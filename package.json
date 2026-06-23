@@ -1,0 +1,47 @@
+{
+  "name": "venueos-by-pivobook",
+  "version": "1.0.0",
+  "description": "VenueOS by PivoBook.com - venue-side SaaS for premium wedding and banqueting venues.",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SZUA-ux/VENUEOSBYPIVOBOOK.git"
+  },
+  "keywords": [
+    "venueos",
+    "pivobook",
+    "banqueting venue software",
+    "wedding venue crm",
+    "beo software"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SZUA-ux/VENUEOSBYPIVOBOOK/issues"
+  },
+  "homepage": "https://github.com/SZUA-ux/VENUEOSBYPIVOBOOK#readme",
+  "dependencies": {
+    "@supabase/ssr": "^0.12.0",
+    "@supabase/supabase-js": "^2.108.2",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.21.0",
+    "next": "^16.2.9",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.2.9",
+    "typescript": "^6.0.3"
+  }
+}
