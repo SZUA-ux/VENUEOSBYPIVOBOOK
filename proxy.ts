@@ -1,9 +1,10 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const response = NextResponse.next({ request });
-  const isProtectedRoute = request.nextUrl.pathname.startsWith("/hq") || request.nextUrl.pathname.startsWith("/app");
+  const isProtectedRoute =
+    request.nextUrl.pathname.startsWith("/hq") || request.nextUrl.pathname.startsWith("/app");
 
   if (!isProtectedRoute) return response;
 

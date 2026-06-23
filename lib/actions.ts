@@ -29,57 +29,36 @@ export async function submitDemoRequest(formData: FormData) {
   const parsed = demoRequestSchema.safeParse(Object.fromEntries(formData));
 
   if (!parsed.success) {
-    return {
-      ok: false,
-      message: "Please complete the required demo request fields.",
-    };
+    return;
   }
 
   const supabase = getSupabaseServiceClient();
   if (!supabase) {
-    return {
-      ok: true,
-      message:
-        "Demo request validated. Configure Supabase environment variables to persist it in PivoBook HQ.",
-    };
+    return;
   }
 
-  const { consent: _consent, ...payload } = parsed.data;
+  const { consent: ignoredConsent, ...payload } = parsed.data;
+  void ignoredConsent;
   const { error } = await supabase.from("demo_requests").insert({
     ...payload,
     status: "new",
   });
 
   if (error) {
-    return {
-      ok: false,
-      message: "The demo request could not be saved. Please try again or contact PivoBook.",
-    };
+    throw new Error("The demo request could not be saved. Please try again or contact PivoBook.");
   }
-
-  return {
-    ok: true,
-    message: "Demo request received. PivoBook HQ can now review and assign it.",
-  };
 }
 
 export async function submitContactRequest(formData: FormData) {
   const parsed = contactSchema.safeParse(Object.fromEntries(formData));
 
   if (!parsed.success) {
-    return {
-      ok: false,
-      message: "Please add your name, email and enquiry message.",
-    };
+    return;
   }
 
   const supabase = getSupabaseServiceClient();
   if (!supabase) {
-    return {
-      ok: true,
-      message:
-        "Contact request validated. Configure Supabase to persist it as a support/contact record.",
-    };
+    return;
   }
 
   const { error } = await supabase.from("contact_requests").insert({
@@ -88,14 +67,6 @@ export async function submitContactRequest(formData: FormData) {
   });
 
   if (error) {
-    return {
-      ok: false,
-      message: "The enquiry could not be saved. Please try again.",
-    };
+    throw new Error("The enquiry could not be saved. Please try again.");
   }
-
-  return {
-    ok: true,
-    message: "Thanks. The PivoBook team has received your enquiry.",
-  };
 }

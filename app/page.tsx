@@ -6,6 +6,7 @@ import {
   FileText,
   MessageCircle,
   Utensils,
+  type LucideIcon,
 } from "lucide-react";
 import { MarketingShell } from "@/components/MarketingShell";
 import { Badge, Button, Card, FeatureGrid, IconCard, ProgressBar, Section, StatCard } from "@/components/ui";
@@ -18,6 +19,24 @@ export const metadata = createMetadata({
     "Manage bookings, menus, BEOs, payment tracking and event-day operations from one venue-side command centre.",
   path: "/",
 });
+
+const coreEngineCards: Array<{ title: string; Icon: LucideIcon; body: string }> = [
+  {
+    title: "BEO and function sheet automation",
+    Icon: FileText,
+    body: "Compile quote, menu, itinerary, decor, staff, supplier and payment readiness into role-specific outputs.",
+  },
+  {
+    title: "WhatsApp Web command centre",
+    Icon: MessageCircle,
+    body: "Generate prefilled click-to-send links and track message generation without using the WhatsApp Business API.",
+  },
+  {
+    title: "Owner dashboard preview",
+    Icon: BarChart3,
+    body: "MRR is for PivoBook HQ. Venue owners see confirmed revenue, outstanding balances, utilisation and events at risk.",
+  },
+];
 
 export default function HomePage() {
   return (
@@ -114,13 +133,8 @@ export default function HomePage() {
 
       <Section className="bg-slate-950 text-white" eyebrow="Core engines" title="Business-first tools for complex venue operations">
         <div className="grid gap-5 md:grid-cols-3">
-          {[
-            ["BEO and function sheet automation", FileText, "Compile quote, menu, itinerary, decor, staff, supplier and payment readiness into role-specific outputs."],
-            ["WhatsApp Web command centre", MessageCircle, "Generate prefilled click-to-send links and track message generation without using the WhatsApp Business API."],
-            ["Owner dashboard preview", BarChart3, "MRR is for PivoBook HQ. Venue owners see confirmed revenue, outstanding balances, utilisation and events at risk."],
-          ].map(([title, Icon, body]) => (
-            <div key={String(title)} className="rounded-3xl border border-white/10 bg-white/5 p-6">
-              {/* @ts-expect-error Icon is narrowed from tuple data at runtime. */}
+          {coreEngineCards.map(({ title, Icon, body }) => (
+            <div key={title} className="rounded-3xl border border-white/10 bg-white/5 p-6">
               <Icon className="h-7 w-7 text-amber-300" />
               <h3 className="mt-5 text-xl font-bold">{title}</h3>
               <p className="mt-3 leading-7 text-slate-300">{body}</p>

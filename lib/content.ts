@@ -8,7 +8,6 @@ import {
   ClipboardCheck,
   CreditCard,
   FileText,
-  Home,
   LayoutDashboard,
   Mail,
   MessageCircle,
